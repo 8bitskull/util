@@ -31,6 +31,8 @@ local sqrt = math.sqrt
 local abs = math.abs
 local asin  = math.asin
 
+local M = {}
+
 ---t = time elapsed
 ---
 ---b = beginning value
@@ -38,7 +40,7 @@ local asin  = math.asin
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function linear(t, b, c, d)
+function M.linear(t, b, c, d)
   return c * t / d + b
 end
 
@@ -49,7 +51,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inQuad(t, b, c, d)
+function M.inQuad(t, b, c, d)
   t = t / d
   return c * pow(t, 2) + b
 end
@@ -61,7 +63,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outQuad(t, b, c, d)
+function M.outQuad(t, b, c, d)
   t = t / d
   return -c * t * (t - 2) + b
 end
@@ -73,7 +75,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inOutQuad(t, b, c, d)
+function M.inOutQuad(t, b, c, d)
   t = t / d * 2
   if t < 1 then
     return c / 2 * pow(t, 2) + b
@@ -89,7 +91,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outInQuad(t, b, c, d)
+function M.outInQuad(t, b, c, d)
   if t < d / 2 then
     return outQuad (t * 2, b, c / 2, d)
   else
@@ -104,7 +106,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inCubic (t, b, c, d)
+function M.inCubic (t, b, c, d)
   t = t / d
   return c * pow(t, 3) + b
 end
@@ -116,7 +118,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outCubic(t, b, c, d)
+function M.outCubic(t, b, c, d)
   t = t / d - 1
   return c * (pow(t, 3) + 1) + b
 end
@@ -128,7 +130,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inOutCubic(t, b, c, d)
+function M.inOutCubic(t, b, c, d)
   t = t / d * 2
   if t < 1 then
     return c / 2 * t * t * t + b
@@ -145,7 +147,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outInCubic(t, b, c, d)
+function M.outInCubic(t, b, c, d)
   if t < d / 2 then
     return outCubic(t * 2, b, c / 2, d)
   else
@@ -160,7 +162,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inQuart(t, b, c, d)
+function M.inQuart(t, b, c, d)
   t = t / d
   return c * pow(t, 4) + b
 end
@@ -172,7 +174,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outQuart(t, b, c, d)
+function M.outQuart(t, b, c, d)
   t = t / d - 1
   return -c * (pow(t, 4) - 1) + b
 end
@@ -184,7 +186,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inOutQuart(t, b, c, d)
+function M.inOutQuart(t, b, c, d)
   t = t / d * 2
   if t < 1 then
     return c / 2 * pow(t, 4) + b
@@ -201,7 +203,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outInQuart(t, b, c, d)
+function M.outInQuart(t, b, c, d)
   if t < d / 2 then
     return outQuart(t * 2, b, c / 2, d)
   else
@@ -216,7 +218,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inQuint(t, b, c, d)
+function M.inQuint(t, b, c, d)
   t = t / d
   return c * pow(t, 5) + b
 end
@@ -228,7 +230,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outQuint(t, b, c, d)
+function M.outQuint(t, b, c, d)
   t = t / d - 1
   return c * (pow(t, 5) + 1) + b
 end
@@ -240,7 +242,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inOutQuint(t, b, c, d)
+function M.inOutQuint(t, b, c, d)
   t = t / d * 2
   if t < 1 then
     return c / 2 * pow(t, 5) + b
@@ -257,7 +259,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outInQuint(t, b, c, d)
+function M.outInQuint(t, b, c, d)
   if t < d / 2 then
     return outQuint(t * 2, b, c / 2, d)
   else
@@ -272,7 +274,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inSine(t, b, c, d)
+function M.inSine(t, b, c, d)
   return -c * cos(t / d * (pi / 2)) + c + b
 end
 
@@ -283,7 +285,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outSine(t, b, c, d)
+function M.outSine(t, b, c, d)
   return c * sin(t / d * (pi / 2)) + b
 end
 
@@ -294,7 +296,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inOutSine(t, b, c, d)
+function M.inOutSine(t, b, c, d)
   return -c / 2 * (cos(pi * t / d) - 1) + b
 end
 
@@ -305,7 +307,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outInSine(t, b, c, d)
+function M.outInSine(t, b, c, d)
   if t < d / 2 then
     return outSine(t * 2, b, c / 2, d)
   else
@@ -320,7 +322,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inExpo(t, b, c, d)
+function M.inExpo(t, b, c, d)
   if t == 0 then
     return b
   else
@@ -335,7 +337,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outExpo(t, b, c, d)
+function M.outExpo(t, b, c, d)
   if t == d then
     return b + c
   else
@@ -350,7 +352,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inOutExpo(t, b, c, d)
+function M.inOutExpo(t, b, c, d)
   if t == 0 then return b end
   if t == d then return b + c end
   t = t / d * 2
@@ -369,7 +371,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outInExpo(t, b, c, d)
+function M.outInExpo(t, b, c, d)
   if t < d / 2 then
     return outExpo(t * 2, b, c / 2, d)
   else
@@ -384,7 +386,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inCirc(t, b, c, d)
+function M.inCirc(t, b, c, d)
   t = t / d
   return(-c * (sqrt(1 - pow(t, 2)) - 1) + b)
 end
@@ -396,7 +398,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outCirc(t, b, c, d)
+function M.outCirc(t, b, c, d)
   t = t / d - 1
   return(c * sqrt(1 - pow(t, 2)) + b)
 end
@@ -408,7 +410,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inOutCirc(t, b, c, d)
+function M.inOutCirc(t, b, c, d)
   t = t / d * 2
   if t < 1 then
     return -c / 2 * (sqrt(1 - t * t) - 1) + b
@@ -425,7 +427,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outInCirc(t, b, c, d)
+function M.outInCirc(t, b, c, d)
   if t < d / 2 then
     return outCirc(t * 2, b, c / 2, d)
   else
@@ -440,7 +442,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inElastic(t, b, c, d, a, p)
+function M.inElastic(t, b, c, d, a, p)
   if t == 0 then return b end
 
   t = t / d
@@ -463,8 +465,8 @@ local function inElastic(t, b, c, d, a, p)
   return -(a * pow(2, 10 * t) * sin((t * d - s) * (2 * pi) / p)) + b
 end
 
--- a: amplitud
--- p: period
+--- a: amplitud
+--- p: period
 ---t = time elapsed
 ---
 ---b = beginning value
@@ -472,7 +474,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outElastic(t, b, c, d, a, p)
+function M.outElastic(t, b, c, d, a, p)
   if t == 0 then return b end
 
   t = t / d
@@ -493,8 +495,8 @@ local function outElastic(t, b, c, d, a, p)
   return a * pow(2, -10 * t) * sin((t * d - s) * (2 * pi) / p) + c + b
 end
 
--- p = period
--- a = amplitud
+--- p = period
+--- a = amplitud
 ---t = time elapsed
 ---
 ---b = beginning value
@@ -502,7 +504,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inOutElastic(t, b, c, d, a, p)
+function M.inOutElastic(t, b, c, d, a, p)
   if t == 0 then return b end
 
   t = t / d * 2
@@ -530,8 +532,8 @@ local function inOutElastic(t, b, c, d, a, p)
   end
 end
 
--- a: amplitud
--- p: period
+--- a: amplitud
+--- p: period
 ---t = time elapsed
 ---
 ---b = beginning value
@@ -539,7 +541,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outInElastic(t, b, c, d, a, p)
+function M.outInElastic(t, b, c, d, a, p)
   if t < d / 2 then
     return outElastic(t * 2, b, c / 2, d, a, p)
   else
@@ -554,7 +556,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inBack(t, b, c, d, s)
+function M.inBack(t, b, c, d, s)
   if not s then s = 1.70158 end
   t = t / d
   return c * t * t * ((s + 1) * t - s) + b
@@ -567,7 +569,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outBack(t, b, c, d, s)
+function M.outBack(t, b, c, d, s)
   if not s then s = 1.70158 end
   t = t / d - 1
   return c * (t * t * ((s + 1) * t + s) + 1) + b
@@ -580,7 +582,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inOutBack(t, b, c, d, s)
+function M.inOutBack(t, b, c, d, s)
   if not s then s = 1.70158 end
   s = s * 1.525
   t = t / d * 2
@@ -599,7 +601,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outInBack(t, b, c, d, s)
+function M.outInBack(t, b, c, d, s)
   if t < d / 2 then
     return outBack(t * 2, b, c / 2, d, s)
   else
@@ -614,7 +616,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outBounce(t, b, c, d)
+function M.outBounce(t, b, c, d)
   t = t / d
   if t < 1 / 2.75 then
     return c * (7.5625 * t * t) + b
@@ -637,7 +639,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inBounce(t, b, c, d)
+function M.inBounce(t, b, c, d)
   return c - outBounce(d - t, 0, c, d) + b
 end
 
@@ -648,7 +650,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function inOutBounce(t, b, c, d)
+function M.inOutBounce(t, b, c, d)
   if t < d / 2 then
     return inBounce(t * 2, 0, c, d) * 0.5 + b
   else
@@ -663,7 +665,7 @@ end
 ---c = change in value (i.e. ending - beginning)
 ---
 ---d = duration (total time)
-local function outInBounce(t, b, c, d)
+function M.outInBounce(t, b, c, d)
   if t < d / 2 then
     return outBounce(t * 2, b, c / 2, d)
   else
@@ -671,46 +673,4 @@ local function outInBounce(t, b, c, d)
   end
 end
 
-return {
-  linear = linear,
-  inQuad = inQuad,
-  outQuad = outQuad,
-  inOutQuad = inOutQuad,
-  outInQuad = outInQuad,
-  inCubic  = inCubic ,
-  outCubic = outCubic,
-  inOutCubic = inOutCubic,
-  outInCubic = outInCubic,
-  inQuart = inQuart,
-  outQuart = outQuart,
-  inOutQuart = inOutQuart,
-  outInQuart = outInQuart,
-  inQuint = inQuint,
-  outQuint = outQuint,
-  inOutQuint = inOutQuint,
-  outInQuint = outInQuint,
-  inSine = inSine,
-  outSine = outSine,
-  inOutSine = inOutSine,
-  outInSine = outInSine,
-  inExpo = inExpo,
-  outExpo = outExpo,
-  inOutExpo = inOutExpo,
-  outInExpo = outInExpo,
-  inCirc = inCirc,
-  outCirc = outCirc,
-  inOutCirc = inOutCirc,
-  outInCirc = outInCirc,
-  inElastic = inElastic,
-  outElastic = outElastic,
-  inOutElastic = inOutElastic,
-  outInElastic = outInElastic,
-  inBack = inBack,
-  outBack = outBack,
-  inOutBack = inOutBack,
-  outInBack = outInBack,
-  inBounce = inBounce,
-  outBounce = outBounce,
-  inOutBounce = inOutBounce,
-  outInBounce = outInBounce,
-}
+return M
