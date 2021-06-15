@@ -17,3 +17,6 @@ title = util
 [library]
 include_dirs = util
 
+[input]
+game_binding = /builtins/input/all.input_bindingc
+
