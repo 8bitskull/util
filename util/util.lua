@@ -22,6 +22,17 @@ local getiter = function(x)
     error("expected table", 3)
 end
 
+---Set up random number generator and clear bad rolls. Returns seed value used.
+function util.randomseed(seed)
+    seed = seed or (100000000000000 * (socket.gettime() % 1))
+    math.randomseed(seed)
+    for i=1,20 do
+        math.random()
+    end
+
+    return seed
+end
+
 function util.angle_deg(x1, y1, x2, y2)
     return math.atan2(y2 - y1, x2 - x1) * util.rad_to_deg
 end
