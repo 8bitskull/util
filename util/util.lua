@@ -46,7 +46,7 @@ end
 ---Get the rotation needed to rotate an object towards a point using go.set_rotation(). Default object direction (0 deg) is to the right.
 function util.get_rotation_towards_point(direction)
 
-    return vmath.quat_rotation_z(math.atan2(direction.y, direction.x))
+    return vmath.quat_rotation_z(math.atan2(-direction.y, -direction.x))
 end
 
 ---Returns a normalized direction, 0 rad = 1,0,0 (right)
