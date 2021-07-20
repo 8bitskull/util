@@ -33,12 +33,20 @@ function util.randomseed(seed)
     return seed
 end
 
+---Get the angle (degree) between two points
 function util.angle_deg(x1, y1, x2, y2)
     return math.atan2(y2 - y1, x2 - x1) * util.rad_to_deg
 end
 
+---Get the angle (radians) between two points
 function util.angle_rad(x1, y1, x2, y2)
     return math.atan2(y2 - y1, x2 - x1)
+end
+
+---Get the rotation needed to rotate an object towards a point using go.set_rotation(). Default object direction (0 deg) is to the right.
+function util.get_rotation_towards_point(direction)
+
+    return vmath.quat_rotation_z(math.atan2(direction.y, direction.x))
 end
 
 ---Returns a normalized direction, 0 rad = 1,0,0 (right)
@@ -49,6 +57,11 @@ function util.get_direction_from_angle(rad)
     return vmath.rotate(rot, dir)
 end
 
+function util.get_direction(from, to)
+    return vmath.normalize(from - to)
+end
+
+---Returns a random direction (vec3)
 function util.get_random_direction()
 
     return vmath.normalize(vmath.vector3(1 - 2 * math.random(), 1 - 2 * math.random(), 0))
