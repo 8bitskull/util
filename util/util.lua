@@ -43,8 +43,14 @@ function util.angle_rad(x1, y1, x2, y2)
     return math.atan2(y2 - y1, x2 - x1)
 end
 
+---Get the rotation needed to rotate an object towards a point using go.animate euler.z. Default object direction (0 deg) is to the right.
+function util.get_rotation_for_animation(direction)
+
+    return util.angle_deg(0,0,direction.x,direction.y)
+end
+
 ---Get the rotation needed to rotate an object towards a point using go.set_rotation(). Default object direction (0 deg) is to the right.
-function util.get_rotation_towards_point(direction)
+function util.get_rotation_for_go_set(direction)
 
     return vmath.quat_rotation_z(math.atan2(-direction.y, -direction.x))
 end
