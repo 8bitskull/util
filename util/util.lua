@@ -73,6 +73,12 @@ function util.get_random_direction()
     return vmath.normalize(vmath.vector3(1 - 2 * math.random(), 1 - 2 * math.random(), 0))
 end
 
+---Returns true if a vector3 has values and is not nan
+function util.valid_vector(vec)
+
+    return vec and vec.x and vec.y and vec.z and vec.x == vec.x
+end
+
 function util.constant_speed_intercept(runner_position, runner_direction, runner_speed, chaser_position, chaser_speed, dt, max_time)
 
     dt = dt or (1/60)
