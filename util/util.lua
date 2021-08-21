@@ -477,6 +477,20 @@ function util.is_in_range(range, v1, v2)
     return vmath.length(v1-v2) <= range
 end
 
+function util.is_in_rectangle(position, min_x, max_x, min_y, max_y)
+
+    return position.x >= min_x and position.x <= max_x and position.y >= min_y and position.y <= max_y 
+end
+
+function util.line_intersects_rectangle(line_start, line_end, bottom_left, bottom_right, top_left, top_right)
+
+	if util.do_lines_intersect(line_start, line_end, bottom_left, bottom_right) or util.do_lines_intersect(line_start, line_end, bottom_left, top_left) or util.do_lines_intersect(line_start, line_end, top_right, bottom_right) or util.do_lines_intersect(line_start, line_end, top_left, top_right) then
+		return true
+	else
+		return false
+	end
+end
+
 --Input a table of vectors to find the index of the vector closest to a given position
 function util.find_closest(position, cut_off, values)
 
