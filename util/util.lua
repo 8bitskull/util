@@ -218,7 +218,9 @@ function util.deep_copy(t)
         elseif type(v) == util.string_userdata then
             --vector3
             if k.x and k.y and k.z and not k.w then
-                target[k] = vmath.vector3(k)               
+                target[k] = vmath.vector3(k)
+            else
+                target[k] = v
             end
         else
             target[k] = v
