@@ -11,7 +11,6 @@ util.zero_scale = vmath.vector3(0.0000001,0.0000001,0.0000001)
 util.one_scale = vmath.vector3(1,1,1)
 util.string_table = "table"
 util.string_number = "number"
-util.string_userdata = "userdata"
 util.large_number = math.huge
 
 local getiter = function(x)
@@ -215,13 +214,6 @@ function util.deep_copy(t)
     for k, v in pairs(t) do
         if type(v) == util.string_table then
             target[k] = util.deep_copy(v)
-        elseif type(v) == util.string_userdata then
-            --vector3
-            if k.x and k.y and k.z and not k.w then
-                target[k] = vmath.vector3(k)
-            else
-                target[k] = v
-            end
         else
             target[k] = v
         end
