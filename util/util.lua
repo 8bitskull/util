@@ -209,17 +209,7 @@ end
 
 function util.deep_copy(t)
     if type(t) ~= util.string_table then return t end
-    local meta = getmetatable(t)
-    local target = {}
-    for k, v in pairs(t) do
-        if type(v) == util.string_table then
-            target[k] = util.deep_copy(v)
-        else
-            target[k] = v
-        end
-    end
-    setmetatable(target, meta)
-    return target
+    return sys.deserialize(sys.serialize(t))
 end
 
 function util.append(main, table_to_append)
