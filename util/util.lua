@@ -517,7 +517,7 @@ function util.big_pprint(t)
     local type_table = "table"
     for key, value in pairs(t) do
         if type(value) == type_table then
-            util.big_pprint(t)
+            util.big_pprint(value)
         else
             print(key .. ": " .. value)
         end
