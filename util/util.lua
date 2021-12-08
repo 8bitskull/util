@@ -513,4 +513,11 @@ function util.pprint(...)
 	pprint(...)
 end
 
+function util.big_pprint(t)
+    for key, value in pairs(t) do
+        print("PPRINT: " .. key)
+        pprint(value)
+    end
+end
+
 return util
