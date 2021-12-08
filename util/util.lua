@@ -513,13 +513,22 @@ function util.pprint(...)
 	pprint(...)
 end
 
+--pprints subtables of a table
 function util.big_pprint(t)
+    for key, value in pairs(t) do
+        print("PPRINT: ", key)
+        pprint(value)
+    end
+end
+
+--individually prints each line of a nested table
+function util.recursive_pprint(t)
     local type_table = "table"
     for key, value in pairs(t) do
         if type(value) == type_table then
-            util.big_pprint(value)
+            util.recursive_pprint(value)
         else
-            print(key .. ": " .. value)
+            print(key .. ": ", value)
         end
     end
 end
