@@ -522,13 +522,14 @@ function util.big_pprint(t)
 end
 
 --individually prints each line of a nested table
-function util.recursive_pprint(t)
+function util.recursive_pprint(t, table_name)
+    table_name = table_name or ""
     local type_table = "table"
     for key, value in pairs(t) do
         if type(value) == type_table then
-            util.recursive_pprint(value)
+            util.recursive_pprint(value, key)
         else
-            print(key .. ": ", value)
+            print(table_name .. ": " .. key .. ": ", value)
         end
     end
 end
