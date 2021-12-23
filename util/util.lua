@@ -297,6 +297,17 @@ function util.find(t, value)
     return nil
 end
 
+function util.does_any_table_value_exist_in_other_table(t1, t2)
+    local iter1 = getiter(t1)
+    local iter2 = getiter(t2)
+    for k1, v1 in iter(t1) do
+        for k2, v2 in iter(t2) do
+            if v1 == v2 then return v1 end
+        end 
+    end
+    return nil
+end
+
 ---Returns true if x is an array -- the value is assumed to be an array if it is a table which contains a value at the index 1. This function is used internally and can be overridden if you wish to use a different method to detect arrays.
 function util.isarray(x)
     return type(x) == "table" and x[1] ~= nil
