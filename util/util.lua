@@ -300,8 +300,8 @@ end
 function util.does_any_table_value_exist_in_other_table(t1, t2)
     local iter1 = getiter(t1)
     local iter2 = getiter(t2)
-    for k1, v1 in iter(t1) do
-        for k2, v2 in iter(t2) do
+    for k1, v1 in iter1(t1) do
+        for k2, v2 in iter2(t2) do
             if v1 == v2 then return v1 end
         end 
     end
