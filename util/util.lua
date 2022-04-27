@@ -83,7 +83,7 @@ end
 ---Returns true if a vector3 has values and is not nan
 function util.valid_vector(vec)
 
-    return vec and vec.x and vec.y and vec.z and vec.x == vec.x
+    return vec and vec.x and vec.y and vec.z and vec.x == vec.x and vec.y == vec.y and vec.z == vec.z
 end
 
 function util.constant_speed_intercept(runner_position, runner_direction, runner_speed, chaser_position, chaser_speed, dt, max_time)
