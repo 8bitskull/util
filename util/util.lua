@@ -219,6 +219,14 @@ function util.deep_copy(t)
     return sys.deserialize(sys.serialize(t))
 end
 
+--Shuffles the order of an integer-indexed table
+function util.shuffle(tbl)
+    for i = #tbl, 2, -1 do
+    local j = math.random(i)
+        tbl[i], tbl[j] = tbl[j], tbl[i]
+    end
+end
+
 function util.append(main, table_to_append)
 
     local num = #table_to_append
