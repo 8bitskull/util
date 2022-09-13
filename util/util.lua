@@ -70,6 +70,13 @@ function util.get_direction_from_angle(rad)
     return vmath.rotate(rot, dir)
 end
 
+---Returns a normalized direction from a quat (which you get from go.get_rotation())
+function util.get_direction_from_quat(quat)
+
+    local dir = vmath.vector3(1,0,0)
+    return vmath.rotate(quat, dir)
+end
+
 ---Returns a quat angle, which can be used in go.set_rotation()
 function util.get_angle_from_direction(direction)
 	return vmath.quat_rotation_z(math.atan2(direction.y, direction.x))
