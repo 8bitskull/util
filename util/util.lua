@@ -43,7 +43,7 @@ function util.angle_rad(x1, y1, x2, y2)
     return math.atan2(y2 - y1, x2 - x1)
 end
 
----Rotate a vector. Positive is to the left, negative to the right.
+---Rotate a vector. Positive is to the left, negative to the right. Returns a quat.
 function util.rotate_vector(vector, radians, angle)
 
     radians = radians or angle * util.rad_to_deg
@@ -68,6 +68,11 @@ function util.get_direction_from_angle(rad)
     local dir = vmath.vector3(1,0,0)
     local rot = vmath.quat_rotation_z(rad)
     return vmath.rotate(rot, dir)
+end
+
+---Returns a quat angle, which can be used in go.set_rotation()
+function util.get_angle_from_direction(direction)
+	return vmath.quat_rotation_z(math.atan2(direction.y, direction.x))
 end
 
 function util.get_direction(from, to)
