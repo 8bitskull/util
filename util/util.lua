@@ -46,7 +46,7 @@ end
 ---Rotate a vector. Positive is to the left, negative to the right.
 function util.rotate_vector(vector, radians, angle)
 
-    radians = radians or angle * util.rad_to_deg
+    radians = radians or angle * util.deg_to_rad
     return vmath.rotate(vmath.quat_rotation_z(radians), vector)
 end
 
