@@ -43,7 +43,7 @@ function util.angle_rad(x1, y1, x2, y2)
     return math.atan2(y2 - y1, x2 - x1)
 end
 
----Rotate a vector. Positive is to the left, negative to the right. Returns a quat.
+---Rotate a vector. Positive is to the left, negative to the right.
 function util.rotate_vector(vector, radians, angle)
 
     radians = radians or angle * util.rad_to_deg
