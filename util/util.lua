@@ -92,6 +92,11 @@ function util.get_random_direction()
     return vmath.normalize(vmath.vector3(1 - 2 * math.random(), 1 - 2 * math.random(), 0))
 end
 
+---Bounces a vector off a normal (e.g. when a ball bounces off a wall), useful for handling collision objects
+function util.get_reflection_vector(direction, normal)
+    return direction - 2 * vmath.dot(direction, normal) * normal
+end
+
 ---Returns true if a vector3 has values and is not nan
 function util.valid_vector(vec)
 
