@@ -194,6 +194,18 @@ function util.is_between(amount,min,max,equal_to_okay)
     end
 end
 
+function util.is_inf(value)
+    return value == math.huge or value == -math.huge
+end
+
+function util.is_nan(value)
+    return value ~= value
+end
+
+function util.is_valid_number(value)
+    return value == value and value ~= math.huge and value ~= -math.huge
+end
+
 function util.length(target_arr)
 	if target_arr ~= nil then
 		return #target_arr
