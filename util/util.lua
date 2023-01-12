@@ -180,6 +180,12 @@ function util.clamp(var,min,max)
     return var
 end
 
+--- `rate` is the lerp coefficient per second. So rate=0.5 halves the difference every second.
+function util.lerpdt(from, to, rate, dt)
+	return (from - to) * (1 - rate)^dt + to -- Flip rate so it's the expected direction (0 = no change).
+end
+--https://forum.defold.com/t/lua-utility-functions/70526/14
+
 function util.is_between(amount,min,max,equal_to_okay)
 
     if amount == nil or min == nil or max == nil then
