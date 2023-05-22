@@ -93,9 +93,9 @@ end
 ---d = duration (total time)
 function M.outInQuad(t, b, c, d)
   if t < d / 2 then
-    return outQuad (t * 2, b, c / 2, d)
+    return M.outQuad (t * 2, b, c / 2, d)
   else
-    return inQuad((t * 2) - d, b + c / 2, c / 2, d)
+    return M.inQuad((t * 2) - d, b + c / 2, c / 2, d)
   end
 end
 
@@ -149,9 +149,9 @@ end
 ---d = duration (total time)
 function M.outInCubic(t, b, c, d)
   if t < d / 2 then
-    return outCubic(t * 2, b, c / 2, d)
+    return M.outCubic(t * 2, b, c / 2, d)
   else
-    return inCubic((t * 2) - d, b + c / 2, c / 2, d)
+    return M.inCubic((t * 2) - d, b + c / 2, c / 2, d)
   end
 end
 
@@ -205,9 +205,9 @@ end
 ---d = duration (total time)
 function M.outInQuart(t, b, c, d)
   if t < d / 2 then
-    return outQuart(t * 2, b, c / 2, d)
+    return M.outQuart(t * 2, b, c / 2, d)
   else
-    return inQuart((t * 2) - d, b + c / 2, c / 2, d)
+    return M.inQuart((t * 2) - d, b + c / 2, c / 2, d)
   end
 end
 
@@ -261,9 +261,9 @@ end
 ---d = duration (total time)
 function M.outInQuint(t, b, c, d)
   if t < d / 2 then
-    return outQuint(t * 2, b, c / 2, d)
+    return M.outQuint(t * 2, b, c / 2, d)
   else
-    return inQuint((t * 2) - d, b + c / 2, c / 2, d)
+    return M.inQuint((t * 2) - d, b + c / 2, c / 2, d)
   end
 end
 
@@ -309,9 +309,9 @@ end
 ---d = duration (total time)
 function M.outInSine(t, b, c, d)
   if t < d / 2 then
-    return outSine(t * 2, b, c / 2, d)
+    return M.outSine(t * 2, b, c / 2, d)
   else
-    return inSine((t * 2) -d, b + c / 2, c / 2, d)
+    return M.inSine((t * 2) -d, b + c / 2, c / 2, d)
   end
 end
 
@@ -373,9 +373,9 @@ end
 ---d = duration (total time)
 function M.outInExpo(t, b, c, d)
   if t < d / 2 then
-    return outExpo(t * 2, b, c / 2, d)
+    return M.outExpo(t * 2, b, c / 2, d)
   else
-    return inExpo((t * 2) - d, b + c / 2, c / 2, d)
+    return M.inExpo((t * 2) - d, b + c / 2, c / 2, d)
   end
 end
 
@@ -429,9 +429,9 @@ end
 ---d = duration (total time)
 function M.outInCirc(t, b, c, d)
   if t < d / 2 then
-    return outCirc(t * 2, b, c / 2, d)
+    return M.outCirc(t * 2, b, c / 2, d)
   else
-    return inCirc((t * 2) - d, b + c / 2, c / 2, d)
+    return M.inCirc((t * 2) - d, b + c / 2, c / 2, d)
   end
 end
 
@@ -543,9 +543,9 @@ end
 ---d = duration (total time)
 function M.outInElastic(t, b, c, d, a, p)
   if t < d / 2 then
-    return outElastic(t * 2, b, c / 2, d, a, p)
+    return M.outElastic(t * 2, b, c / 2, d, a, p)
   else
-    return inElastic((t * 2) - d, b + c / 2, c / 2, d, a, p)
+    return M.inElastic((t * 2) - d, b + c / 2, c / 2, d, a, p)
   end
 end
 
@@ -603,9 +603,9 @@ end
 ---d = duration (total time)
 function M.outInBack(t, b, c, d, s)
   if t < d / 2 then
-    return outBack(t * 2, b, c / 2, d, s)
+    return M.outBack(t * 2, b, c / 2, d, s)
   else
-    return inBack((t * 2) - d, b + c / 2, c / 2, d, s)
+    return M.inBack((t * 2) - d, b + c / 2, c / 2, d, s)
   end
 end
 
@@ -640,7 +640,7 @@ end
 ---
 ---d = duration (total time)
 function M.inBounce(t, b, c, d)
-  return c - outBounce(d - t, 0, c, d) + b
+  return c - M.outBounce(d - t, 0, c, d) + b
 end
 
 ---t = time elapsed
@@ -652,9 +652,9 @@ end
 ---d = duration (total time)
 function M.inOutBounce(t, b, c, d)
   if t < d / 2 then
-    return inBounce(t * 2, 0, c, d) * 0.5 + b
+    return M.inBounce(t * 2, 0, c, d) * 0.5 + b
   else
-    return outBounce(t * 2 - d, 0, c, d) * 0.5 + c * .5 + b
+    return M.outBounce(t * 2 - d, 0, c, d) * 0.5 + c * .5 + b
   end
 end
 
@@ -667,9 +667,9 @@ end
 ---d = duration (total time)
 function M.outInBounce(t, b, c, d)
   if t < d / 2 then
-    return outBounce(t * 2, b, c / 2, d)
+    return M.outBounce(t * 2, b, c / 2, d)
   else
-    return inBounce((t * 2) - d, b + c / 2, c / 2, d)
+    return M.inBounce((t * 2) - d, b + c / 2, c / 2, d)
   end
 end
 
