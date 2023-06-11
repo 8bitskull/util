@@ -180,6 +180,11 @@ function util.clamp(var,min,max)
     return var
 end
 
+---Gradually moves a value towards zero (never actually reaching it), based on dt
+function util.decrease_towards_zero(current_value, time_to_zero, dt)
+    return current_value * (math.exp(-math.log(0.0001) / time_to_zero) * dt)
+end
+
 --- `rate` is the lerp coefficient per second. So rate=0.5 halves the difference every second.
 function util.lerpdt(from, to, rate, dt)
 	return (from - to) * (1 - rate)^dt + to -- Flip rate so it's the expected direction (0 = no change).
