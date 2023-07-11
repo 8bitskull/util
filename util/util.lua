@@ -313,6 +313,12 @@ function util.round(num, num_decimal_places)
 	return math.floor(num * mult + 0.5) / mult
 end
 
+---Returns true if x is even
+function util.is_even(x)
+    return x % 2 == 0
+end
+
+
 ---Returns 1 if x is 0 or above, returns -1 when x is negative.
 function util.sign(x)
     return x < 0 and -1 or 1
