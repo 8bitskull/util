@@ -167,6 +167,15 @@ function util.draw_line(from, to, color)
 	msg.post("@render:", "draw_line", { start_point = from, end_point = to, color = color })
 end
 
+function util.hex_to_rgb (hex, alpha)
+    hex = hex:gsub("#","")
+    if string.len(hex) == 3 then
+        return vmath.vector4((tonumber("0x"..hex:sub(1,1))*17)/255, (tonumber("0x"..hex:sub(2,2))*17)/255, (tonumber("0x"..hex:sub(3,3))*17)/255, alpha or 1)
+    else
+        return vmath.vector4(tonumber("0x"..hex:sub(1,2))/255, tonumber("0x"..hex:sub(3,4))/255, tonumber("0x"..hex:sub(5,6))/255, alpha or 1)
+    end
+end
+
 function util.clamp(var,min,max)
 
     if var < min then
