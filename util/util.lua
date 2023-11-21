@@ -56,6 +56,19 @@ function util.get_rotation_for_animation(direction)
     return util.angle_deg(0,0,direction.x,direction.y)
 end
 
+---Prevent issues when animating angles that cross the -180/180 degree boundary
+function util.adjust_euler_for_circular_rotation_animation(prev_euler, target_euler)
+
+    local diff = target_euler - prev_euler
+    if diff > 180 then
+        target_euler = target_euler - 360
+    elseif diff < -180 then
+        target_euler = target_rotation + 360
+    end
+
+    return target_euler
+end
+
 ---Get the rotation needed to rotate an object towards a point using go.set_rotation(). Default object direction (0 deg) is to the right.
 function util.get_rotation_for_go_set(direction)
 
