@@ -63,7 +63,7 @@ function util.adjust_euler_for_circular_rotation_animation(prev_euler, target_eu
     if diff > 180 then
         target_euler = target_euler - 360
     elseif diff < -180 then
-        target_euler = target_rotation + 360
+        target_euler = target_euler + 360
     end
 
     return target_euler
