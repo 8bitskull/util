@@ -209,6 +209,7 @@ end
 
 
 --- `rate` is the lerp coefficient per second. So rate=0.5 halves the difference every second.
+--- the larger the rate, the faster 'to' is reached
 function util.lerpdt(from, to, rate, dt)
 	return (from - to) * (1 - rate)^dt + to -- Flip rate so it's the expected direction (0 = no change).
 end
@@ -272,9 +273,9 @@ function util.splice(t,i,len)
 end
 
 function util.shallow_copy(t)
-  local rtn = {}
-  for k, v in pairs(t) do rtn[k] = v end
-  return rtn
+    local rtn = {}
+    for k, v in pairs(t) do rtn[k] = v end
+    return rtn
 end
 
 function util.deep_copy(t)
