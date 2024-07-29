@@ -331,6 +331,11 @@ function util.weighted_random(power)
 	return math.pow( math.random(), power)
 end
 
+--- Create a format string with the desired number of decimal places
+function util.format_decimal(number, decimal_places)
+    return string.format("%." .. decimal_places .. "f", number)
+end
+
 function util.round(num, num_decimal_places)
 	local mult = 10^(num_decimal_places or 0)
 	return math.floor(num * mult + 0.5) / mult
