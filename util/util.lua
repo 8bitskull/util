@@ -30,6 +30,7 @@ function util.randomseed(seed)
         math.random()
     end
 
+    print("Randomseed:", seed)
     return seed
 end
 
