@@ -646,4 +646,15 @@ function util.recursive_pprint(t, table_name)
     end
 end
 
+---Prints the script and line where it is inserted. label is optional, just used to differentiate calls.
+function util.script_stamp(label)
+
+	local info = debug.getinfo(2, "Sl") -- 2 levels up in the call stack, "Sl" gets source and line
+    local script = info.short_src or "[Unknown script]"
+    local line = info.currentline or "[Unknown line]"
+    
+	-- Print the custom message with script and line number
+    print(string.format("Script stamp (%s): %s:%d", label, script, line))
+end
+
 return util
