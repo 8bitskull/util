@@ -332,6 +332,40 @@ function util.weighted_random(power)
 	return math.pow( math.random(), power)
 end
 
+--- Rolls a weighted index from 1 to n, where the probability curve is exponential and customisable
+--- weight_multiplier (number): weight multiplier at index n (e.g. 2 means last index is 2× as likely as the first)
+--- curve_exponent (number): shape of the curve (1 = exponential, >1 = steeper, <1 = flatter)
+function util.weighted_random_integer(n, weight_multiplier, curve_exponent)
+
+    if n == 1 then return 1 end
+
+    weight_multiplier = weight_multiplier or 2
+    curve_exponent = curve_exponent or 1
+
+    local weights = {}
+    local total_weight = 0
+
+    for i = 1, n do
+        local t = (i - 1) / (n - 1)                     -- normalized position [0,1]
+        local curved_t = t ^ curve_exponent             -- apply curve shaping
+        local weight = weight_multiplier ^ curved_t     -- exponential ramp from 1 to weight_multiplier
+        weights[i] = weight
+        total_weight = total_weight + weight
+    end
+
+    local r = math.random() * total_weight
+    local cumulative = 0
+
+    for i = 1, n do
+        cumulative = cumulative + weights[i]
+        if r <= cumulative then
+            return i
+        end
+    end
+
+    return n -- fallback
+end
+
 --- Create a format string with the desired number of decimal places
 function util.format_decimal(number, decimal_places)
     return string.format("%." .. decimal_places .. "f", number)
